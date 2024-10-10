@@ -38,3 +38,6 @@ async def hola(ctx):
     embed.add_field(name="**!ranime**", value=":mag: Recomendar un anime al azar", inline=False)
 
     await ctx.send(embed=embed)
+
+# Iniciar el bot
+bot.run(TOKEN)
