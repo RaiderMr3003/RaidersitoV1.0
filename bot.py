@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from discord.ext import commands
 from discord import Embed
 
-
 # Cargamos el archivo .env donde se encuentra el token del bot
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
