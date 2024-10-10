@@ -6,7 +6,7 @@ from discord.ui import Button, View
 from discord import Embed
 import yt_dlp as youtube_dl
 import asyncio
-from commands_info import commands_info
+from commands.commands_info import commands_info
 
 # Cargamos el archivo .env donde se encuentra el token del bot
 load_dotenv()
@@ -21,8 +21,7 @@ async def on_ready():
     print(f'Bot conectado como {bot.user.name}')
     print('------')
 
-#INFO
-#INFO
+
 #INFO
 #Comando "h" para que el bot nos dé la información de comandos
 @bot.command(aliases=['h'])
@@ -95,14 +94,7 @@ async def hola(ctx):
     others_button.callback = button_callback
     back_button.callback = back_button_callback
 
-#INFO
-#INFO
-#INFO
 
-
-
-#MUSICA
-#MUSICA
 #MUSICA
 #Configuración para yt-dlp
 #Estas son las opciones que se usarán para extraer audio de YouTube usando yt-dlp
@@ -192,11 +184,11 @@ async def leavech(ctx):
     else:
         await ctx.send("No estoy conectado a ningún canal de voz.")
 
-# Comando para reproducir una canción desde una búsqueda o URL
+#Comando para reproducir una canción desde una búsqueda o URL
 @bot.command(aliases=['p'])
 async def play(ctx, *, search: str):
     if ctx.voice_client:
-        # Verifica si el usuario está en el mismo canal de voz que el bot
+        #Verifica si el usuario está en el mismo canal de voz que el bot
         if ctx.author.voice and ctx.author.voice.channel == ctx.voice_client.channel:
             async with ctx.typing():
                 try:
@@ -214,7 +206,6 @@ async def play(ctx, *, search: str):
             await ctx.send("¡Debes estar en el mismo canal de voz que yo para solicitar canciones!")
     else:
         await ctx.send("¡Primero debes hacer que me una a un canal de voz usando **!joinch**")
-
 
 #Comando para pausar la reproducción de la canción actual
 @bot.command()
@@ -244,14 +235,14 @@ async def skip(ctx):
     else:
         await ctx.send("No hay ninguna canción reproduciéndose.")
 
-# Comando para ver las canciones en la cola
+#Comando para ver las canciones en la cola
 @bot.command(aliases=['q'])
 async def queue(ctx, page: int = 1):
-    songs_per_page = 5  # Número de canciones por página
+    songs_per_page = 5  #Número de canciones por página
     total_songs = len(song_queue)
-    total_pages = (total_songs + songs_per_page - 1) // songs_per_page  # Calcular total de páginas
+    total_pages = (total_songs + songs_per_page - 1) // songs_per_page  #Calcular total de páginas
 
-    # Validar si la página solicitada es válida
+    #Validar si la página solicitada es válida
     if page < 1 or page > total_pages:
         await ctx.send(f"Página no válida. Hay un total de {total_pages} páginas.")
         return
@@ -262,7 +253,7 @@ async def queue(ctx, page: int = 1):
 
         embed = Embed(title="Cola de Canciones", color=0x00ff00)
 
-        # Agregar las canciones a la descripción del embed
+        #Agregar las canciones a la descripción del embed
         for i, song in enumerate(song_queue[start_index:end_index]):
             embed.add_field(name=f"{start_index + i + 1}. **{song.title}**", value=f"Solicitada por {song.requester.mention}", inline=False)
 
@@ -281,17 +272,13 @@ async def delete(ctx, position: int):
     else:
         await ctx.send("¡Posición no válida! Por favor, ingresa un número válido.")
 
-
-# Comando para borrar toda la cola de canciones
+#Comando para borrar toda la cola de canciones
 @bot.command()
 async def delall(ctx):
     global song_queue 
-    song_queue.clear()  # Limpia toda la cola de canciones
+    song_queue.clear()  #Limpia toda la cola de canciones
     await ctx.send("La cola de canciones ha sido borrada.")
 
-#MUSICA
-#MUSICA
-#MUSICA
 
 # Iniciar el bot
 bot.run(TOKEN)
