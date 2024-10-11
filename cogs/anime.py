@@ -45,5 +45,6 @@ class Anime(commands.Cog):
         recomendacion = obtener_recomendacion_anime()
         await ctx.send(recomendacion)
 
+#Asegúrate de que esta función se llama correctamente en tu bot
 async def setup(bot):
     await bot.add_cog(Anime(bot))
