@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class Ping(commands.Cog):
+class Mod(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -18,4 +18,4 @@ class Ping(commands.Cog):
 
 # Asegúrate de que esta función se llama correctamente en tu bot
 async def setup(bot):
-    await bot.add_cog(Ping(bot))
+    await bot.add_cog(Mod(bot))

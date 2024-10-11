@@ -14,7 +14,7 @@ commands_info = {
     "Anime": {
         "description": "Comandos relacionados con anime.",
         "commands": [
-            {"name": "!ranime", "description": "🔍 Recomendar un anime al azar"},
+            {"name": "!ranime", "description": "🔍 Recomendar un anime Random"},
         ],
     },
     "Juegos": {
@@ -26,6 +26,7 @@ commands_info = {
     "Moderación": {
         "description": "Comandos de moderación.",
         "commands": [
+            {"name": "!ping", "description": "🛜 Muestra la latencia de la conexión"},
             {"name": "!mod", "description": "🔨 Descripción del comando de moderación."},
         ],
     },
