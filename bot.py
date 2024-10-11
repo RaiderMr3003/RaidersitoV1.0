@@ -6,7 +6,7 @@ from discord.ui import Button, View
 from discord import Embed
 import yt_dlp as youtube_dl
 import asyncio
-from commands.commands_info import commands_info
+from cogs.commands_info import commands_info
 
 # Cargamos el archivo .env donde se encuentra el token del bot
 load_dotenv()
