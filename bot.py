@@ -6,7 +6,7 @@ from discord.ui import Button, View
 from discord import Embed
 import yt_dlp as youtube_dl
 import asyncio
-from cogs.commands_info import commands_info
+from commands.commands_info import commands_info
 
 # Cargamos el archivo .env donde se encuentra el token del bot
 load_dotenv()
@@ -279,6 +279,16 @@ async def delall(ctx):
     song_queue.clear()  #Limpia toda la cola de canciones
     await ctx.send("La cola de canciones ha sido borrada.")
 
+#Cargar cogs
+async def load():
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+            await bot.load_extension(f'cogs.{filename[:-3]}')
 
 # Iniciar el bot
-bot.run(TOKEN)
+async def main():
+    async with bot:
+        await load()
+        await bot.start(TOKEN)
+
+asyncio.run(main())
