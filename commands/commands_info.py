@@ -27,7 +27,7 @@ commands_info = {
         "description": "Comandos de moderación.",
         "commands": [
             {"name": "!ping", "description": "🛜 Muestra la latencia de la conexión"},
-            {"name": "!mod", "description": "🔨 Descripción del comando de moderación."},
+            {"name": "!delmsg", "description": "🗑️ Borra mensajes"},
         ],
     },
     "Varios": {

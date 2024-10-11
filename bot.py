@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from discord.ext import commands
 from discord.ui import Button, View
 from discord import Embed
-import yt_dlp as youtube_dl
 import asyncio
 from commands.commands_info import commands_info
 
@@ -57,18 +56,18 @@ async def hola(ctx):
         embed = Embed(title=f"Comandos de {section}", color=0x00ff00)
         section_info = commands_info[section]
 
-        # Añadir descripción de la sección
+        #Añadir descripción de la sección
         embed.description = section_info["description"]
 
-        # Añadir comandos de la sección
+        #Añadir comandos de la sección
         for command in section_info["commands"]:
             embed.add_field(name=command["name"], value=command["description"], inline=False)
 
-        # Limpiar la vista y agregar el botón de volver
+        #Limpiar la vista y agregar el botón de volver
         view.clear_items()
         view.add_item(back_button)
 
-        # Editar el mensaje con el nuevo embed y la vista actualizada
+        #Editar el mensaje con el nuevo embed y la vista actualizada
         await interaction.response.edit_message(embed=embed, view=view)
 
     async def back_button_callback(interaction):
