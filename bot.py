@@ -32,7 +32,7 @@ async def hola(ctx):
     anime_button = Button(label="Anime", style=discord.ButtonStyle.primary, custom_id="Anime")
     games_button = Button(label="Juegos", style=discord.ButtonStyle.primary, custom_id="Juegos")
     mod_button = Button(label="Moderación", style=discord.ButtonStyle.primary, custom_id="Moderación")
-    others_button = Button(label="Varios", style=discord.ButtonStyle.primary, custom_id="Varios")
+    others_button = Button(label="Otros", style=discord.ButtonStyle.primary, custom_id="Otros")
     back_button = Button(label="Volver", style=discord.ButtonStyle.secondary, custom_id="Volver")
     
     #Agregar botones a la vista

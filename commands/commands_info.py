@@ -30,8 +30,8 @@ commands_info = {
             {"name": "!delmsg", "description": "🗑️ Borra mensajes"},
         ],
     },
-    "Varios": {
-        "description": "Comandos varios.",
+    "Otros": {
+        "description": "Comandos otros.",
         "commands": [
             {"name": "!pug", "description": "🐶 Muestra una foto de un pug."},
         ],
