@@ -12,7 +12,7 @@ class Otros(commands.Cog):
 
     #Comando para obtener una imagen random de pug (son graciosos)
     @commands.command()
-    async def pug(ctx):
+    async def pug(self, ctx):
         #Hacer una solicitud a la API para obtener una imagen random de pug
         response = requests.get("https://dog.ceo/api/breed/pug/images/random")
         data = response.json()
