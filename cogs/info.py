@@ -44,6 +44,7 @@ class Info(commands.Cog):
                 "commands": [
                     {"name": "!pug", "description": "🐶 Muestra una foto de un pug."},
                     {"name": "!basura", "description": "🗑️ Muestra una foto de alguien random del servidor."},
+                    {"name": "!dado", "description": "🎲 Lanza un dado"},
                 ],
             },
         }
