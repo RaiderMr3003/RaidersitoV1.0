@@ -26,7 +26,9 @@ class Info(commands.Cog):
             "Anime": {
                 "description": "Comandos relacionados con anime.",
                 "commands": [
-                    {"name": "!ranime", "description": "🔍 Recomendar un anime Random"},
+                    {"name": "!ranime", "description": "🎲 Recomendar un anime Random"},
+                    {"name": "!sanime", "description": "🔍 Buscar un anime específico"},
+                    {"name": "!lanime", "description": "📄 Lista 10 animes que están en emisión"},
                 ],
             },
             "Juegos": {
