@@ -21,13 +21,14 @@ def obtener_recomendacion_anime():
             url_anime = anime['url']
             sinopsis = anime['synopsis']
             imagen = anime['images']['jpg']['image_url']  #Imagen del anime
+            calificacion = anime.get('score', 'N/A')  # Obtener la calificación (score), si no está disponible mostrar "N/A"
 
             #Inicializar el traductor
             translator = Translator()
             sinopsis_traducida = translator.translate(sinopsis, src='en', dest='es').text
 
             #Devolver los detalles del anime
-            return titulo, sinopsis_traducida, url_anime, imagen
+            return titulo, sinopsis_traducida, url_anime, imagen, calificacion
         else:
             return None
     else:
@@ -50,13 +51,14 @@ def buscar_anime(query):
             url_anime = anime['url']
             sinopsis = anime['synopsis']
             imagen = anime['images']['jpg']['image_url']  # Imagen del anime
+            calificacion = anime.get('score', 'N/A')  # Obtener la calificación (score), si no está disponible mostrar "N/A"
 
             # Inicializar el traductor
             translator = Translator()
             sinopsis_traducida = translator.translate(sinopsis, src='en', dest='es').text
 
             # Devolver los detalles del anime
-            return titulo, sinopsis_traducida, url_anime, imagen
+            return titulo, sinopsis_traducida, url_anime, imagen, calificacion
         else:
             return None
     else:
@@ -71,6 +73,19 @@ def obtener_animes_recientes():
         datos = response.json()
         if 'data' in datos:
             #Limitar a los primeros 10 animes en emisión
+            return [anime['title'] for anime in datos['data'][:10]]
+        else:
+            return None
+    else:
+        return None
+
+#Función para obtener la lista de próximos estrenos de anime
+def obtener_proximos_estrenos():
+    url = "https://api.jikan.moe/v4/seasons/upcoming" 
+    response = requests.get(url)
+    if response.status_code == 200:
+        datos = response.json()
+        if 'data' in datos:
             return [anime['title'] for anime in datos['data'][:10]]
         else:
             return None
@@ -96,7 +111,7 @@ class Anime(commands.Cog):
             resultado = obtener_recomendacion_anime()
 
             if resultado:
-                titulo, sinopsis_traducida, url_anime, imagen = resultado
+                titulo, sinopsis_traducida, url_anime, imagen, calificacion  = resultado
 
                 #Crear el embed
                 embed = discord.Embed(
@@ -105,6 +120,7 @@ class Anime(commands.Cog):
                     color=discord.Color.blue()  #Puedes cambiar el color del embed
                 )
                 embed.set_image(url=imagen)  #Añadir imagen al embed
+                embed.add_field(name="Calificación", value=f"⭐ {calificacion}/10", inline=True)
                 embed.add_field(name="Más detalles", value=f"[Ver más]({url_anime})", inline=False)
 
                 #Enviar el embed en el canal
@@ -121,7 +137,7 @@ class Anime(commands.Cog):
         resultado = buscar_anime(query)
 
         if resultado:
-            titulo, sinopsis_traducida, url_anime, imagen = resultado
+            titulo, sinopsis_traducida, url_anime, imagen, calificacion = resultado
 
             #Crear el embed
             embed = discord.Embed(
@@ -130,6 +146,7 @@ class Anime(commands.Cog):
                 color=discord.Color.green()
             )
             embed.set_image(url=imagen)
+            embed.add_field(name="Calificación", value=f"⭐ {calificacion}/10", inline=True)
             embed.add_field(name="Más detalles", value=f"[Ver más]({url_anime})", inline=False)
 
             #Enviar el embed en el canal
@@ -156,6 +173,21 @@ class Anime(commands.Cog):
         else:
             await ctx.send("No pude obtener la lista de animes recientes en este momento.")
         
+    #Comando para obtener la lista de próximos estrenos de anime
+    @commands.command()
+    async def animestrenos(self, ctx):
+        proximos_estrenos = obtener_proximos_estrenos()
+        if proximos_estrenos:
+            embed = discord.Embed(title="Próximos estrenos de anime:", color=discord.Color.orange())
+            lista_estrenos = "\n".join([f"{i + 1}. {anime}" for i, anime in enumerate(proximos_estrenos)])
+            embed.add_field(name="Estrenos", value=lista_estrenos, inline=False)
+            embed.set_footer(text="¡Disfruta viendo anime!")  #Pie de página
+
+            await ctx.send(embed=embed)
+        else:
+            await ctx.send("No pude obtener la lista de próximos estrenos.")
+
+
 #Asegúrate de que esta función se llama correctamente en tu bot
 async def setup(bot):
     await bot.add_cog(Anime(bot))
