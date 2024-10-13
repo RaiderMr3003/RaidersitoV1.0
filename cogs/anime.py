@@ -104,29 +104,26 @@ class Anime(commands.Cog):
     #Comando para obtener una recomendación de anime aleatoria con un cooldown de 10 segundos
     @commands.command()
     async def ranime(self, ctx):
-        try:
-            # Obtener la recomendación de anime
+            #Obtener la recomendación de anime
             resultado = obtener_recomendacion_anime()
 
             if resultado:
-                titulo, sinopsis_traducida, url_anime, imagen, calificacion = resultado
+                titulo, sinopsis_traducida, url_anime, imagen, calificacion  = resultado
 
-                # Crear el embed
+                #Crear el embed
                 embed = discord.Embed(
                     title=f"Recomendación de Anime: {titulo}",
                     description=sinopsis_traducida,
-                    color=discord.Color.blue()  # Puedes cambiar el color del embed
+                    color=discord.Color.blue()  #Puedes cambiar el color del embed
                 )
-                embed.set_image(url=imagen)  # Añadir imagen al embed
+                embed.set_image(url=imagen)  #Añadir imagen al embed
                 embed.add_field(name="Calificación", value=f"⭐ {calificacion}/10", inline=True)
                 embed.add_field(name="Más detalles", value=f"[Ver más]({url_anime})", inline=False)
 
-                # Enviar el embed en el canal
+                #Enviar el embed en el canal
                 await ctx.send(embed=embed)
             else:
                 await ctx.send("No pude obtener una recomendación en este momento.")
-        except Exception as e:
-            await ctx.send(f"Ocurrió un error: {str(e)}")
 
 
     #Comando para buscar un anime específico
