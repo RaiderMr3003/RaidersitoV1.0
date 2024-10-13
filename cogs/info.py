@@ -19,6 +19,8 @@ class Info(commands.Cog):
                     {"name": "!resume", "description": "▶️ Reanuda la canción actual"},
                     {"name": "!skip", "description": "⏭️ Salta la canción actual"},
                     {"name": "!queue o !q", "description": "📝 Muestra la cola de canciones"},
+                    {"name": "!delete", "description": "🗑️ Elimina una canción de la cola"},
+                    {"name": "!delall", "description": "🗑️ Elimina toda la cola de canciones"},
                 ],
             },
             "Anime": {
