@@ -32,12 +32,6 @@ class Info(commands.Cog):
                     {"name": "!animestrenos", "description": "📅 Lista de próximos estrenos de anime"},
                 ],
             },
-            "Juegos": {
-                "description": "Comandos relacionados con juegos.",
-                "commands": [
-                    {"name": "!juego", "description": "🎮 Descripción del comando de juego."},
-                ],
-            },
             "Moderación": {
                 "description": "Comandos de moderación.",
                 "commands": [
@@ -61,7 +55,6 @@ class Info(commands.Cog):
         # Crear botones para cada sección
         music_button = Button(label="Música", style=discord.ButtonStyle.primary, custom_id="Música")
         anime_button = Button(label="Anime", style=discord.ButtonStyle.primary, custom_id="Anime")
-        games_button = Button(label="Juegos", style=discord.ButtonStyle.primary, custom_id="Juegos")
         mod_button = Button(label="Moderación", style=discord.ButtonStyle.primary, custom_id="Moderación")
         others_button = Button(label="Otros", style=discord.ButtonStyle.primary, custom_id="Otros")
         back_button = Button(label="Volver", style=discord.ButtonStyle.secondary, custom_id="Volver")
@@ -69,7 +62,6 @@ class Info(commands.Cog):
         # Agregar botones a la vista
         view.add_item(music_button)
         view.add_item(anime_button)
-        view.add_item(games_button)
         view.add_item(mod_button)
         view.add_item(others_button)
 
@@ -110,7 +102,6 @@ class Info(commands.Cog):
             view.clear_items()
             view.add_item(music_button)
             view.add_item(anime_button)
-            view.add_item(games_button)
             view.add_item(mod_button)
             view.add_item(others_button)
 
@@ -119,7 +110,6 @@ class Info(commands.Cog):
         # Asociar el callback a los botones
         music_button.callback = button_callback
         anime_button.callback = button_callback
-        games_button.callback = button_callback
         mod_button.callback = button_callback
         others_button.callback = button_callback
         back_button.callback = back_button_callback
