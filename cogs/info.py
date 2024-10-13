@@ -29,6 +29,7 @@ class Info(commands.Cog):
                     {"name": "!ranime", "description": "🎲 Recomendar un anime Random"},
                     {"name": "!sanime", "description": "🔍 Buscar un anime específico"},
                     {"name": "!lanime", "description": "📄 Lista 10 animes que están en emisión"},
+                    {"name": "!animestrenos", "description": "📅 Lista de próximos estrenos de anime"},
                 ],
             },
             "Juegos": {
