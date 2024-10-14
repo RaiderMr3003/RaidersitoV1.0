@@ -1,6 +1,6 @@
 # RaidersitoV1.0
 
-¡Bienvenido! Este bot está diseñado para que tu configures tu propio bot de discord, ya ofrecer funcionalidades de música, permitiéndote disfrutar de tus canciones favoritas mientras interactúas en tu servidor, pero con todo el codigo eres libre de configurarlo como desees.
+¡Bienvenido! Este bot está diseñado para que configures tu propio bot de Discord, ofreciendo funcionalidades de música que te permiten disfrutar de tus canciones favoritas mientras interactúas en tu servidor. Además, con todo el código a tu disposición, tienes la libertad de personalizarlo a tu gusto.
 
 ## Requisitos
 
